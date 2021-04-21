@@ -52,7 +52,8 @@ export default (client, options = {}) => {
     const idKey = getIdKey({ resource, options });
     dbg('type=%o, resource=%o, params=%o, idKey=%o', type, resource, params, idKey);
     const service = client.service(resource);
-    const query = {};
+    const query = { ...(options.queryExtras||{}) };
+
 
     switch (type) {
       case GET_MANY:
